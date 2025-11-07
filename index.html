@@ -1,0 +1,490 @@
+import React, { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Label } from '@/components/ui/label';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
+import { 
+  MessageCircle, 
+  Phone, 
+  Mail, 
+  Clock, 
+  Bot, 
+  Send, 
+  AlertTriangle, 
+  HelpCircle, 
+  BookOpen, 
+  Shield, 
+  Zap,
+  Users,
+  CheckCircle,
+  ArrowRight,
+  Star
+} from 'lucide-react';
+import { motion } from 'framer-motion';
+
+export default function SupportPage() {
+  const [ticketForm, setTicketForm] = useState({
+    name: '',
+    email: '',
+    category: '',
+    priority: '',
+    subject: '',
+    description: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Chatbot Integration - Ready for implementation
+  useEffect(() => {
+    // Placeholder for chatbot integration
+    // This is where you would load your chatbot script
+    console.log('Support page ready for chatbot integration');
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    // Reset form
+    setTicketForm({
+      name: '',
+      email: '',
+      category: '',
+      priority: '',
+      subject: '',
+      description: ''
+    });
+    
+    setIsSubmitting(false);
+    alert('Support ticket submitted successfully! We\'ll get back to you soon.');
+  };
+
+  const supportOptions = [
+    {
+      icon: Bot,
+      title: 'AI Assistant',
+      description: 'Get instant answers to common questions',
+      action: 'Chat Now',
+      color: 'bg-primary',
+      available: '24/7'
+    },
+    {
+      icon: MessageCircle,
+      title: 'Live Chat',
+      description: 'Connect with our support team',
+      action: 'Start Chat',
+      color: 'bg-blue-500',
+      available: 'Mon-Fri 9AM-6PM'
+    },
+    {
+      icon: Phone,
+      title: 'Phone Support',
+      description: 'Speak directly with an expert',
+      action: 'Call Now',
+      color: 'bg-green-500',
+      available: 'Mon-Fri 9AM-6PM'
+    },
+    {
+      icon: Mail,
+      title: 'Email Support',
+      description: 'Send us a detailed message',
+      action: 'Send Email',
+      color: 'bg-purple-500',
+      available: 'Response in 24h'
+    }
+  ];
+
+  const quickStats = [
+    { icon: Zap, label: 'Avg Response', value: '< 2 hours' },
+    { icon: Users, label: 'Satisfaction', value: '98%' },
+    { icon: Clock, label: 'Availability', value: '24/7' },
+    { icon: CheckCircle, label: 'Resolution', value: '95%' }
+  ];
+
+  const faqItems = [
+    {
+      question: 'How do I reset my password?',
+      answer: 'You can reset your password by clicking the "Forgot Password" link on the login page and following the instructions sent to your email.'
+    },
+    {
+      question: 'How do I contact emergency support?',
+      answer: 'For emergencies, call our 24/7 hotline at 1-800-CHAOS-911 or use the emergency chat feature in our AI assistant.'
+    },
+    {
+      question: 'What are your support hours?',
+      answer: 'Our AI assistant is available 24/7. Live chat and phone support are available Monday-Friday, 9AM-6PM EST.'
+    },
+    {
+      question: 'How long does it take to get a response?',
+      answer: 'AI responses are instant. Email responses typically take 2-4 hours, and urgent issues are prioritized for faster resolution.'
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <section className="relative py-20 px-4 bg-gradient-to-br from-primary/10 via-background to-secondary/10 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(139,92,246,0.1),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(70,130,180,0.1),transparent_50%)]"></div>
+        
+        <div className="max-w-[120rem] mx-auto text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-primary/20 mb-6">
+              <Star className="h-4 w-4 text-primary" />
+              <span className="font-heading text-sm font-semibold">24/7 Support Available</span>
+            </div>
+            
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-heading font-bold text-foreground mb-6">
+              How can we <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">help you?</span>
+            </h1>
+            
+            <p className="text-xl sm:text-2xl font-paragraph text-foreground/70 max-w-3xl mx-auto mb-8">
+              Get instant support through our AI assistant, connect with our team, or browse our help resources.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                size="lg"
+                className="bg-gradient-to-r from-primary to-secondary text-white hover:from-primary/90 hover:to-secondary/90 font-heading px-8 py-4 rounded-xl"
+              >
+                <Bot className="mr-2 h-5 w-5" />
+                Start AI Chat
+              </Button>
+              
+              <Button 
+                size="lg"
+                variant="outline"
+                className="font-heading px-8 py-4 rounded-xl border-2 hover:bg-primary/5"
+              >
+                <Phone className="mr-2 h-5 w-5" />
+                Call Support
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Quick Stats */}
+      <section className="py-12 px-4">
+        <div className="max-w-[120rem] mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {quickStats.map((stat, index) => {
+              const Icon = stat.icon;
+              return (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * index }}
+                  className="text-center"
+                >
+                  <Card className="p-6 border-2 border-primary/10 hover:border-primary/30 transition-all duration-300">
+                    <Icon className="h-8 w-8 text-primary mx-auto mb-3" />
+                    <div className="text-2xl font-heading font-bold text-foreground mb-1">{stat.value}</div>
+                    <div className="text-sm font-paragraph text-foreground/60">{stat.label}</div>
+                  </Card>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Support Options */}
+      <section className="py-16 px-4">
+        <div className="max-w-[120rem] mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-foreground mb-4">
+              Choose Your Support Method
+            </h2>
+            <p className="text-lg font-paragraph text-foreground/70">
+              Multiple ways to get the help you need, when you need it
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {supportOptions.map((option, index) => {
+              const Icon = option.icon;
+              return (
+                <motion.div
+                  key={option.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * index }}
+                >
+                  <Card className="h-full p-6 text-center hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/30 group">
+                    <div className={`${option.color} w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                      <Icon className="h-6 w-6 text-white" />
+                    </div>
+                    <h3 className="text-xl font-heading font-bold text-foreground mb-2">{option.title}</h3>
+                    <p className="text-sm font-paragraph text-foreground/70 mb-3">{option.description}</p>
+                    <Badge variant="secondary" className="mb-4 text-xs">{option.available}</Badge>
+                    <Button className="w-full" variant="outline">
+                      {option.action}
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Card>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Emergency Support Banner */}
+      <section className="py-8 px-4 bg-red-50 border-y border-red-200">
+        <div className="max-w-[120rem] mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className="bg-red-500 w-12 h-12 rounded-full flex items-center justify-center">
+                <AlertTriangle className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h3 className="text-lg font-heading font-bold text-red-900">Emergency Support</h3>
+                <p className="text-sm font-paragraph text-red-700">Need immediate assistance? We're here 24/7</p>
+              </div>
+            </div>
+            <div className="flex gap-3">
+              <Button className="bg-red-500 hover:bg-red-600 text-white">
+                <Phone className="mr-2 h-4 w-4" />
+                Call Emergency
+              </Button>
+              <Button variant="outline" className="border-red-300 text-red-700 hover:bg-red-50">
+                Emergency Chat
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Support Ticket Form */}
+      <section className="py-16 px-4" id="ticket-form">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-foreground mb-4">
+              Submit a Support Ticket
+            </h2>
+            <p className="text-lg font-paragraph text-foreground/70">
+              Can't find what you're looking for? Send us a detailed message
+            </p>
+          </div>
+
+          <Card className="p-8 border-2 border-primary/20">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="name" className="font-heading font-semibold">Name *</Label>
+                  <Input
+                    id="name"
+                    placeholder="Your full name"
+                    value={ticketForm.name}
+                    onChange={(e) => setTicketForm({...ticketForm, name: e.target.value})}
+                    required
+                    className="h-11 rounded-lg border-2 border-primary/20 focus:border-primary"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="email" className="font-heading font-semibold">Email *</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="your.email@example.com"
+                    value={ticketForm.email}
+                    onChange={(e) => setTicketForm({...ticketForm, email: e.target.value})}
+                    required
+                    className="h-11 rounded-lg border-2 border-primary/20 focus:border-primary"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="category" className="font-heading font-semibold">Category *</Label>
+                  <Select 
+                    value={ticketForm.category} 
+                    onValueChange={(value) => setTicketForm({...ticketForm, category: value})}
+                  >
+                    <SelectTrigger className="h-11 rounded-lg border-2 border-primary/20 focus:border-primary">
+                      <SelectValue placeholder="Select a category" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="technical">Technical Issue</SelectItem>
+                      <SelectItem value="account">Account Support</SelectItem>
+                      <SelectItem value="billing">Billing Question</SelectItem>
+                      <SelectItem value="general">General Inquiry</SelectItem>
+                      <SelectItem value="emergency">Emergency Support</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="priority" className="font-heading font-semibold">Priority *</Label>
+                  <Select 
+                    value={ticketForm.priority} 
+                    onValueChange={(value) => setTicketForm({...ticketForm, priority: value})}
+                  >
+                    <SelectTrigger className="h-11 rounded-lg border-2 border-primary/20 focus:border-primary">
+                      <SelectValue placeholder="Select priority" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="low">Low - General question</SelectItem>
+                      <SelectItem value="medium">Medium - Standard support</SelectItem>
+                      <SelectItem value="high">High - Urgent issue</SelectItem>
+                      <SelectItem value="critical">Critical - System down</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="subject" className="font-heading font-semibold">Subject *</Label>
+                <Input
+                  id="subject"
+                  placeholder="Brief description of your issue"
+                  value={ticketForm.subject}
+                  onChange={(e) => setTicketForm({...ticketForm, subject: e.target.value})}
+                  required
+                  className="h-11 rounded-lg border-2 border-primary/20 focus:border-primary"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="description" className="font-heading font-semibold">Description *</Label>
+                <Textarea
+                  id="description"
+                  placeholder="Please provide detailed information about your issue, including any error messages and steps to reproduce the problem..."
+                  value={ticketForm.description}
+                  onChange={(e) => setTicketForm({...ticketForm, description: e.target.value})}
+                  required
+                  className="min-h-32 rounded-lg border-2 border-primary/20 focus:border-primary"
+                />
+              </div>
+
+              <Separator />
+
+              <Button 
+                type="submit" 
+                disabled={isSubmitting || !ticketForm.name || !ticketForm.email || !ticketForm.category || !ticketForm.priority || !ticketForm.subject || !ticketForm.description}
+                className="w-full bg-gradient-to-r from-primary to-secondary text-white hover:from-primary/90 hover:to-secondary/90 font-heading py-3 rounded-lg"
+                size="lg"
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                    Submitting...
+                  </>
+                ) : (
+                  <>
+                    <Send className="mr-2 h-4 w-4" />
+                    Submit Ticket
+                  </>
+                )}
+              </Button>
+            </form>
+          </Card>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 px-4 bg-gradient-to-r from-primary/5 via-background to-secondary/5">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-foreground mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-lg font-paragraph text-foreground/70">
+              Quick answers to common questions
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {faqItems.map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 * index }}
+              >
+                <Card className="p-6 border-2 border-primary/10 hover:border-primary/30 transition-all duration-300">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-primary/10 rounded-full p-2 mt-1">
+                      <HelpCircle className="h-4 w-4 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-heading font-semibold text-foreground mb-2">{faq.question}</h3>
+                      <p className="font-paragraph text-foreground/70">{faq.answer}</p>
+                    </div>
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="text-center mt-8">
+            <Button variant="outline" className="font-heading">
+              <BookOpen className="mr-2 h-4 w-4" />
+              View All FAQs
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Information */}
+      <section className="py-16 px-4 bg-foreground text-white">
+        <div className="max-w-[120rem] mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-4">
+              Still Need Help?
+            </h2>
+            <p className="text-lg font-paragraph text-white/80">
+              Our support team is here to assist you
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div className="space-y-4">
+              <div className="bg-white/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
+                <Phone className="h-8 w-8" />
+              </div>
+              <h3 className="text-xl font-heading font-bold">Phone Support</h3>
+              <p className="text-white/80">1-800-SUPPORT</p>
+              <p className="text-sm text-white/60">Mon-Fri 9AM-6PM EST</p>
+            </div>
+
+            <div className="space-y-4">
+              <div className="bg-white/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
+                <Mail className="h-8 w-8" />
+              </div>
+              <h3 className="text-xl font-heading font-bold">Email Support</h3>
+              <p className="text-white/80">support@example.com</p>
+              <p className="text-sm text-white/60">Response within 24 hours</p>
+            </div>
+
+            <div className="space-y-4">
+              <div className="bg-white/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
+                <MessageCircle className="h-8 w-8" />
+              </div>
+              <h3 className="text-xl font-heading font-bold">Live Chat</h3>
+              <p className="text-white/80">Available now</p>
+              <p className="text-sm text-white/60">Average response: 2 minutes</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Chatbot Integration Point */}
+      <div id="chatbot-container" className="fixed bottom-4 right-4 z-50">
+        {/* This is where the chatbot widget will be injected */}
+      </div>
+    </div>
+  );
+}
